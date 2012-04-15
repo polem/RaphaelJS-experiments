@@ -3,94 +3,115 @@
     <head>
         <meta charset="UTF-8">
         <title>Raphael Js Charts</title>
+        <link rel="stylesheet" href="css/style.css" />
     </head>
     <body>
         <h1>Raphael Js Charts</h1>
         <div id="chart">
-            <table>
-              <tr>
-                <td>2011</td>
-                <td>20 %</td>
-              </tr>
-              <tr>
-                <td>2012</td>
-                <td>44 %</td>
-              </tr>
-            </table>
         </div>
         <script type="text/javascript" src="js/libs/raphael-min.js"></script>
         <script type="text/javascript">
-            var colors = {
-                0 : '#823A54',
-                1 : '#83B0AD',
-                2 : '#CBC7B0'
-            };
 
-            Raphael.fn.bar = function (value, options) {
+            Raphael.fn.bar = function (label, value, x, y, attributes, duration, delay) {
 
               // Initial state
-              var bar = this.rect(0, 0, options.width, 0, 8);
+              var bar = this.rect(x, y, attributes.width, 0, 6);
               bar.attr({
-                'fill': options.color,
+                'fill': attributes.fill,
                 'stroke-opacity': 0,
-                'radius': 8
               });
 
-              var circle = this.circle(bar.attr('width')/2, bar.attr('width')/2, 0);
+              var circle = this.circle(bar.attr('x') + bar.attr('width') * 0.5, bar.attr('y') - bar.attr('width') * 0.5, 0);
               circle.attr({
                 'fill': '#FFFFFF',
                 'stroke-opacity': 0
               });
 
-              var valueText = this.text(circle.attr('cx'), circle.attr('cy'), value);
-              valueText.attr({
-                'fill' : options.color,
+              var labelText = this.text(circle.attr('cx'), circle.attr('cy'), label);
+              labelText.attr({
+                'fill' : attributes.fill,
                 'opacity': 0,
-                'font-size' : 13
-              });
+                'font-size' : 13,
+                'font-family' : 'ITCFranklinGothic-Demi'
+              })
+
+              var valueText = this.text(circle.attr('cx'), 20, value);
+              valueText.attr({
+                'fill' : attributes.fill,
+                'font-size' : 16,
+                'opacity': 0,
+                'font-family' : 'ITCFranklinGothic-Demi'
+              })
 
               // Animations
               bar.animate(Raphael.animation({
-                'height': value
-                }, options.speed, 'ease-in-out').delay(options.delay));
+                'height': attributes.height,
+                'y': (y - attributes.height)
+                }, duration, '<>').delay(delay)).pause();
 
               circle.animate(Raphael.animation({
-                'r': (bar.attr('width')/2 - 4)
-                }, options.speed*0.4, 'back-out').delay(options.delay + options.speed * 0.5));
+                'r': (bar.attr('width') * 0.5 - 4)
+                }, duration * 0.5, 'back-out').delay(delay + duration * 1.4 )).pause();
 
               valueText.animate(Raphael.animation({
                 'opacity': 1
-              }, options.speed*0.4, 'back-out').delay(options.delay + options.speed * 0.7));
+                }, duration * 0.2, '>').delay(delay + duration * 2)).pause();
+
+              labelText.animate(Raphael.animation({
+                'opacity': 1
+                }, duration * 0.2, '>').delay(delay + duration * 2 )).pause();
 
               return this.set(
                 bar,
                 circle,
-                valueText
+                valueText,
+                labelText
               );
 
             };
 
             Raphael.fn.chart = function (datas, options) {
-              var index = 0;
+              var colors = ['#823A54', '#83B0AD', '#CBC7B0'];
+
+              var barWidth = 50;
+              var y = 240;
+
+              var duration = 600;
+              var delay = duration * 2;
+
+              var chart = this.set();
+
               var x = 0;
-              var width = 50;
-              var speed = 1000
-              var decay = speed * 0.1
-              for(index = 0; index < datas.keys.length; index++)
+
+              for(var index = 0; index < datas.length; index++)
               {
-                  this.bar(datas.values[index], {color : colors[index], width: width, delay: decay * index, speed : speed}).translate(x, 0);
-                  x += (width * 1.7);
+                chart.push(
+                  this.bar(datas[index]['label'], datas[index]['value'], x, y, {'fill' : colors[index%colors.length], 'width': barWidth, 'height': datas[index]['height']}, duration, delay * index * 0.2)
+                );
+                x += barWidth * 1.5;
               }
+              return chart;
             };
 
             window.onload = function () {
                 var datas = {
-                 'keys': [2011, 2012, 2013],
-                 'values': [420, 140, 300]
+                    "datas" : [
+                      {
+                          'label': 2011,
+                          'value': '269',
+                          'height': 100
+                      },
+                      {
+                          'label': 2012,
+                          'value': '321',
+                          'height': 130
+                      }
+                    ]
                 };
 
-                var paper = Raphael("chart", 640, 480);
-                paper.chart(datas, {});
+                var paper = Raphael("chart", 300, 260);
+                var chart = paper.chart(datas.datas, {});
+                chart.resume();
 
             };
 

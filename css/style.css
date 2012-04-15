@@ -1,0 +1,96 @@
+@font-face{
+  font-family: 'ITCFranklinGothic-Medium';
+  src: url('../fonts/itcfranklingothicstd-med.eot');
+  src: url('../fonts/itcfranklingothicstd-med.eot?') format('eot'),
+  url('../fonts/itcfranklingothicstd-med.ttf') format('truetype'),
+  url('../fonts/itcfranklingothicstd-med.woff') format('woff'),
+  url('../fonts/itcfranklingothicstd-med.svg#ITCFranklinGothic-Medium') format('svg');
+}
+@font-face{
+  font-family: 'ITCFranklinGothic-Heavy';
+  src: url('../fonts/itcfranklingothicstd-hvy.eot');
+  src: url('../fonts/itcfranklingothicstd-hvy.eot?') format('eot'),
+  url('../fonts/itcfranklingothicstd-hvy.ttf') format('truetype'),
+  url('../fonts/itcfranklingothicstd-hvy.woff') format('woff'),
+  url('../fonts/itcfranklingothicstd-hvy.svg#ITCFranklinGothic-Heavy') format('svg');
+}
+@font-face{
+  font-family: 'ITCFranklinGothic-Book';
+  src: url('../fonts/itcfranklingothicstd-book.eot');
+  src: url('../fonts/itcfranklingothicstd-book.eot?') format('eot'),
+  url('../fonts/itcfranklingothicstd-book.ttf') format('truetype'),
+  url('../fonts/itcfranklingothicstd-book.woff') format('woff'),
+  url('../fonts/itcfranklingothicstd-book.svg#ITCFranklinGothic-Book') format('svg');
+}
+@font-face{
+  font-family: 'ITCFranklinGothic-Demi';
+  src: url('../fonts/itcfranklingothicstd-demi.eot');
+  src: url('../fonts/itcfranklingothicstd-demi.eot?') format('eot'),
+  url('../fonts/itcfranklingothicstd-demi.ttf') format('truetype'),
+  url('../fonts/itcfranklingothicstd-demi.woff') format('woff'),
+  url('../fonts/itcfranklingothicstd-demi.svg#ITCFranklinGothic-Demi') format('svg');
+}
+@font-face{
+  font-family: 'FranklinGothic-Condensed';
+  src: url('../fonts/franklingothic-condensed.eot');
+  src: url('../fonts/franklingothic-condensed.eot?') format('eot'),
+  url('../fonts/franklingothic-condensed.ttf') format('truetype'),
+  url('../fonts/franklingothic-condensed.woff') format('woff'),
+  url('../fonts/franklingothic-condensed.svg#FranklinGothic-Condensed') format('svg');
+}
+@font-face{
+  font-family: 'FranklinGothic-ExtraCondensed';
+  src: url('../fonts/franklingothic-extracond.eot');
+  src: url('../fonts/franklingothic-extracond.eot?') format('eot'),
+  url('../fonts/franklingothic-extracond.ttf') format('truetype'),
+  url('../fonts/franklingothic-extracond.woff') format('woff'),
+  url('../fonts/franklingothic-extracond.svg#FranklinGothic-ExtraCondensed') format('svg');
+}
+html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,img,ins,kbd,q,s,samp,small,strike,strong,sub,sup,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td,article,aside,canvas,details,embed,figure,figcaption,footer,header,hgroup,menu,nav,output,ruby,section,summary,time,mark,audio,video {
+  margin:0;
+  padding:0;
+  border:0;
+  vertical-align:baseline;
+}
+h1,h2,h3,h4,h5,h6,strong {font-weight:normal;}
+article,aside,details,figcaption,figure,footer,header,hgroup,menu,nav,section {display:block;}
+ol,ul {list-style:none;}
+blockquote, q {quotes:none;}
+blockquote:before,blockquote:after,q:before,q:after {
+  content:'';
+  content:none;
+}
+table{
+  border-collapse:collapse;
+  border-spacing:0;
+}
+html,
+body {height: 100%;}
+body {
+  min-width:1034px;
+  margin: 20px;
+  font: 15px/18px Arial, Helvetica, sans-serif; 
+  color: #103084;
+  background:#fff;
+}
+a {
+  text-decoration: none;
+  color: #103084;
+}
+a:hover { text-decoration: underline; }
+img { border-style: none; }
+input {
+  font: 15px Arial, Helvetica, sans-serif;
+  vertical-align: middle;
+  color:#fff;
+}
+input[type=submit]:hover{cursor:pointer;}
+mark {
+  color: #103084;
+  background:none;
+}
+h1, h2, h3
+{
+  font-family: 'ITCFranklinGothic-Demi';
+  color: #222;
+}
