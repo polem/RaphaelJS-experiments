@@ -1,0 +1,99 @@
+<!DOCTYPE HTML>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>Raphael Js Charts</title>
+    </head>
+    <body>
+        <h1>Raphael Js Charts</h1>
+        <div id="chart">
+            <table>
+              <tr>
+                <td>2011</td>
+                <td>20 %</td>
+              </tr>
+              <tr>
+                <td>2012</td>
+                <td>44 %</td>
+              </tr>
+            </table>
+        </div>
+        <script type="text/javascript" src="js/libs/raphael-min.js"></script>
+        <script type="text/javascript">
+            var colors = {
+                0 : '#823A54',
+                1 : '#83B0AD',
+                2 : '#CBC7B0'
+            };
+
+            Raphael.fn.bar = function (value, options) {
+
+              // Initial state
+              var bar = this.rect(0, 0, options.width, 0, 8);
+              bar.attr({
+                'fill': options.color,
+                'stroke-opacity': 0,
+                'radius': 8
+              });
+
+              var circle = this.circle(bar.attr('width')/2, bar.attr('width')/2, 0);
+              circle.attr({
+                'fill': '#FFFFFF',
+                'stroke-opacity': 0
+              });
+
+              var valueText = this.text(circle.attr('cx'), circle.attr('cy'), value);
+              valueText.attr({
+                'fill' : options.color,
+                'opacity': 0,
+                'font-size' : 13
+              });
+
+              // Animations
+              bar.animate(Raphael.animation({
+                'height': value
+                }, options.speed, 'ease-in-out').delay(options.delay));
+
+              circle.animate(Raphael.animation({
+                'r': (bar.attr('width')/2 - 4)
+                }, options.speed*0.4, 'back-out').delay(options.delay + options.speed * 0.5));
+
+              valueText.animate(Raphael.animation({
+                'opacity': 1
+              }, options.speed*0.4, 'back-out').delay(options.delay + options.speed * 0.7));
+
+              return this.set(
+                bar,
+                circle,
+                valueText
+              );
+
+            };
+
+            Raphael.fn.chart = function (datas, options) {
+              var index = 0;
+              var x = 0;
+              var width = 50;
+              var speed = 1000
+              var decay = speed * 0.1
+              for(index = 0; index < datas.keys.length; index++)
+              {
+                  this.bar(datas.values[index], {color : colors[index], width: width, delay: decay * index, speed : speed}).translate(x, 0);
+                  x += (width * 1.7);
+              }
+            };
+
+            window.onload = function () {
+                var datas = {
+                 'keys': [2011, 2012, 2013],
+                 'values': [420, 140, 300]
+                };
+
+                var paper = Raphael("chart", 640, 480);
+                paper.chart(datas, {});
+
+            };
+
+        </script>
+    </body>
+</html>
